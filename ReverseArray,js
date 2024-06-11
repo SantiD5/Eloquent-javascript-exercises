@@ -1,0 +1,30 @@
+/*Para este ejercicio, escribe dos funciones, reverseArray y reverseArrayInPlace. La primera,
+reverseArray, debería tomar un array como argumento y producir un
+nuevo array que tenga los mismos elementos en orden inverso. La
+segunda, reverseArrayInPlace, debería hacer lo que hace el método
+reverse: modificar el array dado como argumento invirtiendo sus el￾ementos. Ninguna de las funciones puede utilizar el método reverse
+estándar */
+
+const reverseArray = (Array) => {
+  let numbers = [];
+  for(let i = 0; i < Array.length; i++){
+    numbers.unshift(Array[i])
+  }
+  return numbers
+}
+console.log(reverseArray([1,2,3,4]));
+
+
+const reverseArrayInPlace = (array) => {
+  let left = 0;
+  let right = array.length - 1;
+  while (left < right) {
+    let temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+    left++;
+    right--;
+  }
+  return array;
+}
+console.log(reverseArrayInPlace([1, 2, 3, 4])); 
