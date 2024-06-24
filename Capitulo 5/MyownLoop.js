@@ -34,3 +34,4 @@ let test = (i, condicion) => {
     }
 };
 console.log(loop(1, (val) => test(val, 15), actualizacion, cuerpo));
+//testing linux
