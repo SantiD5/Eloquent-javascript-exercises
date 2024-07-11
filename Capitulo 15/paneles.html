@@ -1,0 +1,58 @@
+<!--
+Pestañas
+Los paneles con pestañas son ampliamente utilizados en interfaces de
+usuario. Te permiten seleccionar un panel de interfaz eligiendo entre
+varias pestañas que sobresalen por encima de un elemento.
+En este ejercicio debes implementar una interfaz de pestañas simple.
+Escribe una función, asTabs, que tome un nodo DOM y cree una interfaz
+de pestañas que muestre los elementos secundarios de ese nodo. Debería
+insertar una lista de elementos <button> en la parte superior del nodo,
+uno por cada elemento secundario, conteniendo el texto recuperado del
+atributo data-tabname del hijo. Todos los hijos originales excepto uno
+deben estar ocultos (con un estilo display de none). El nodo actualmente
+visible se puede seleccionar haciendo clic en los botones.
+Cuando funcione, extiéndelo para dar estilo al botón de la pestaña
+actualmente seleccionada de manera diferente para que sea obvio cuál
+pestaña está seleccionada.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <tab-panel>
+        <div data-tabname="one">Tab one</div>
+        <div data-tabname="two">Tab two</div>
+        <div data-tabname="three">Tab three</div>
+      </tab-panel>
+      <script>
+         function asTabs(node) {
+    let tabs = Array.from(node.children).map(node => {
+      let button = document.createElement("button");
+      button.textContent = node.getAttribute("data-tabname");
+      let tab = {node, button};
+      button.addEventListener("click", () => selectTab(tab));
+      return tab;
+    });
+    console.log(tabs)
+
+    let tabList = document.createElement("div");
+    for (let {button} of tabs) tabList.appendChild(button);
+    node.insertBefore(tabList, node.firstChild);
+
+    function selectTab(selectedTab) {
+      for (let tab of tabs) {
+        let selected = tab == selectedTab;
+        tab.node.style.display = selected ? "" : "none";
+        tab.button.style.color = selected ? "red" : "";
+      }
+    }
+    selectTab(tabs[0]);
+  }
+        asTabs(document.querySelector("tab-panel"));
+      </script>
+</body>
+</html>

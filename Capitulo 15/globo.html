@@ -1,0 +1,52 @@
+<!--
+Globo
+Escribe una página que muestre un globo (usando el emoji de globo, 🎈).
+Cuando presiones la flecha hacia arriba, debería inflarse (crecer) un 10
+por ciento, y cuando presiones la flecha hacia abajo, debería desinflarse
+(encoger) un 10 por ciento.
+Puedes controlar el tamaño del texto (los emoji son texto) estable-
+ciendo la propiedad CSS font-size (style.fontSize) en su elemento
+padre. Recuerda incluir una unidad en el valor, por ejemplo, píxeles
+(10px).
+Los nombres de las teclas de flecha son "ArrowUp" y "ArrowDown".
+Asegúrate de que las teclas cambien solo el globo, sin hacer scroll en la
+página.
+Cuando eso funcione, añade una característica en la que, si inflas
+el globo más allá de un cierto tamaño, explote. En este caso, explotar
+significa que se reemplace con un emoji de 💥, y el manejador de eventos
+se elimine (para que no se pueda inflar o desinflar la explosión).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="globo" style="font-size: 16px;">🎈</p>
+    <script>
+        let globo = document.getElementById("globo");
+        let fontSize = 16;
+        document.addEventListener("keydown",(event)=>{
+            if(event.key === "ArrowUp"){
+                fontSize *= 1.1;
+                globo.style.fontSize = fontSize + "px";
+                console.log("arrow up")
+                event.preventDefault()
+                if (fontSize > 200) {
+                    globo.textContent = '💥';
+                }
+                
+            }else if(event.key === "ArrowDown"){
+                
+                fontSize /= 1.1;
+                globo.style.fontSize = fontSize + "px";
+                console.log("arrowdown")
+                event.preventDefault()
+            }
+           
+        })
+    </script>
+</body>
+</html>

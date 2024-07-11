@@ -1,0 +1,54 @@
+<!--
+Estela del ratón
+En los primeros días de JavaScript, que fue la época dorada de las
+páginas de inicio estridentes con un montón de imágenes animadas, la
+gente ideó formas verdaderamente inspiradoras de usar el lenguaje.
+Una de estas era la estela del ratón —una serie de elementos que
+seguirían al puntero del ratón mientras lo movías por la página.
+En este ejercicio, quiero que implementes una estela del ratón. Utiliza
+elementos <div> con posición absoluta y un tamaño fijo y color de fondo
+(consulta el código en la sección de “Clics de ratón” para un ejemplo).
+Crea un montón de estos elementos y, al mover el ratón, muéstralos en
+la estela del puntero del ratón.
+Hay varias aproximaciones posibles aquí. Puedes hacer tu solución
+406tan simple o tan compleja como desees. Una solución simple para em-
+pezar es mantener un número fijo de elementos de estela y recorrerlos,
+moviendo el siguiente a la posición actual del ratón cada vez que ocurra
+un evento "mousemove".
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .trail { /* className for the trail elements */
+      position: absolute;
+      height: 6px; width: 6px;
+      border-radius: 3px;
+      background: teal;
+    }
+    body {
+      height: 300px;
+    }
+  </style>
+  <script>
+
+    document.addEventListener("mousemove",(event)=>{
+        let trail = document.createElement('div');
+        trail.classList.add("trail")
+        trail.style.left = event.pageX + "px";
+        trail.style.top = event.pageY + "px";
+        document.body.appendChild(trail);
+
+        setTimeout(() => {
+            trail.remove()
+        }, 50);
+    })
+  </script>
+    
+</body>
+</html>
