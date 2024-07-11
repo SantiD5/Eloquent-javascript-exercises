@@ -1,0 +1,65 @@
+/*
+Dado un conjunto de datos de montañas, un array de objetos con
+propiedades name, height, y place, genera la estructura DOM para una
+tabla que enumera los objetos. Debería haber una columna por clave
+y una fila por objeto, además de una fila de encabezado con elementos
+<th> en la parte superior, enumerando los nombres de las columnas.
+  Escribe esto de manera que las columnas se deriven automáticamente
+  de los objetos, tomando los nombres de las propiedades del primer ob-
+  jeto en los datos.
+  Muestra la tabla resultante en el documento agregándola al elemento
+  que tenga un atributo id de "mountains".
+  Una vez que tengas esto funcionando, alinea a la derecha las cel-
+  das que contienen valores numéricos estableciendo su propiedad style.
+  textAlign en "right".
+  */
+
+  <!doctype html>
+
+  <h1>Mountains</h1>
+
+  <div id="mountains"></div>
+
+  <script>
+    const MOUNTAINS = [
+      {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+      {name: "Everest", height: 8848, place: "Nepal"},
+      {name: "Mount Fuji", height: 3776, place: "Japan"},
+      {name: "Vaalserberg", height: 323, place: "Netherlands"},
+      {name: "Denali", height: 6168, place: "United States"},
+      {name: "Popocatepetl", height: 5465, place: "Mexico"},
+      {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+    ];
+    let main = document.getElementById("mountains");
+    function createTh(keys){
+      const table = document.createElement("table");
+      const tr = document.createElement("tr");
+      table.appendChild(tr)
+      keys.forEach((element)=>{ 
+        const para = document.createElement("th");
+         para.textContent = element;
+                tr.appendChild(para);
+      })
+      for(let i = 0; i < MOUNTAINS.length; i++){
+        const nameValue = MOUNTAINS[i]['name'];
+        const heightValue = MOUNTAINS[i]['height'];
+        const placeValue = MOUNTAINS[i]['place'];
+        const pare = document.createElement("tr")
+        table.appendChild(pare);
+        const paro = document.createElement("th");
+        const paro1 = document.createElement("th");
+        const paro2 = document.createElement("th");
+          paro1.textContent = heightValue;
+          paro2.textContent = placeValue;
+          paro.textContent = nameValue;
+                pare.appendChild(paro);
+                pare.appendChild(paro1)
+                pare.appendChild(paro2)
+      } 
+      main.appendChild(table);
+    }
+    
+    let mount = Object.keys(MOUNTAINS[0])
+    createTh(mount)
+  // Your code here
+  </script>

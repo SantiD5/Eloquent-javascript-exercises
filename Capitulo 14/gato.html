@@ -1,0 +1,49 @@
+<!--
+Extiende la animación del gato definida anteriormente para que tanto
+el gato como su sombrero (<img src="img/hat.png">) orbiten en lados
+opuestos de la elipse.
+O haz que el sombrero circule alrededor del gato. O altera la ani-
+mación de alguna otra manera interesante.
+Para facilitar el posicionamiento de varios objetos, es probablemente
+una buena idea cambiar a posicionamiento absoluto. Esto significa que
+top y left se cuentan en relación al extremo superior izquierdo del
+documento. Para evitar usar coordenadas negativas, que harían que la
+imagen se salga de la página visible, puedes agregar un número fijo de
+píxeles a los valores de posición.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p style="text-align: center">
+        <img src="./assets/hat.png" id="cat" alt="" style="position: relative;">
+        <img src="./assets/gatojpeg" alt="" id="hat" style="position: absolute">
+    </p>
+    <script>
+         let cat = document.querySelector("#cat");
+  let hat = document.querySelector("#hat");
+
+  let angle = 0;
+  let lastTime = null;
+  function animate(time) {
+    if (lastTime != null) angle += (time - lastTime) * 0.001;
+    lastTime = time;
+    cat.style.top = (Math.sin(angle) * 40 + 40) + "px";
+    cat.style.left = (Math.cos(angle) * 200 + 230) + "px";
+    hat.style.top = (cat.style.top) + "px";
+    hat.style.left = (cat.style.left) + "px";
+
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+    </script>
+</body>
+
+</html>

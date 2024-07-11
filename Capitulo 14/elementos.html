@@ -1,0 +1,60 @@
+<!-- El método document.getElementsByTagName devuelve todos los elementos
+hijos con un nombre de etiqueta dado. Implementa tu propia versión
+de esto como una función que tome un nodo y un string (el nombre de
+la etiqueta) como argumentos y devuelva un array que contenga todos
+los nodos de elementos descendientes con el nombre de etiqueta dado.
+Tu función debe recorrer el documento en sí. No puede usar un método
+como querySelectorAll para hacer el trabajo.
+Para encontrar el nombre de etiqueta de un elemento, usa su propiedad
+nodeName. Pero ten en cuenta que esto devolverá el nombre de la etiqueta
+en mayúsculas. Usa los métodos de string toLowerCase o toUpperCase
+para compensar esto.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <div>
+
+                <h1>Hola</h1>
+            </div>
+        </div>
+        <h1>Hola</h1>
+        <h1>Hola</h1>
+        <h1>Hola</h1>
+    </div>
+
+    <script>
+        function byTagName(node,text){
+            
+            let result = [];
+            let texto = text.toUpperCase()
+        function traverse (node){
+            if(node.nodeName === texto)
+            {
+                result.push(node)
+            }
+            node = node.firstChild;
+            while(node){
+                traverse(node);
+                node = node.nextSibling;
+            }
+        }  
+        traverse(node)
+        return result
+        } 
+        
+        console.log(byTagName(document.body, "h1").length);
+        console.log(byTagName(document.body, "div").length);
+
+    </script>
+</body>
+
+</html>
